@@ -1,4 +1,7 @@
 (function() {
+  if (typeof require !== 'undefined')
+    require('mp4box.js');
+
   var BEHAVIOR_QT = 0x01;
 
   var ftypParse = BoxParser.ftypBox.prototype.parse;
@@ -21,5 +24,8 @@
       this.parseFullHeader(stream);
     BoxParser.ContainerBox.prototype.parse.call(this, stream);
   };
+
+  if (typeof exports !== 'undefined')
+    exports.BoxParser = BoxParser;
 
 })();
