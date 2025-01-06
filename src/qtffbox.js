@@ -23,7 +23,11 @@ function extendQTFF(BoxParser) {
   };
 }
 
-console.log(module, exports);
+function hexBuffer(buffer) {
+    return [...new Uint8Array(buffer)].map(x => "0x" + x.toString(16).padStart(2, '0')).join(', ');
+}
+
+console.log('qtffbox.js loaded');
 
 if (typeof exports !== 'undefined')
   exports.extendQTFF = extendQTFF;
