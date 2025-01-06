@@ -1,6 +1,6 @@
 {
   "name": "qtffbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "QTFF Quicktime .MOV extensions to mp4box.js",
   "keywords": [
     "m4",
@@ -9,7 +9,7 @@
     "streaming"
   ],
   "homepage": "https://github.com/stefwalter/qtffbox.js",
-  "main": "dist/qtff.all.js",
+  "main": "dist/qtffbox.all.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/stefwalter/qtffbox.js.git"
@@ -31,6 +31,7 @@
     "qunit": "^2.23.1"
   },
   "scripts": {
+    "prepare": "grunt all",
     "test": "grunt test --verbose"
   }
 }
