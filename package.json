@@ -1,0 +1,36 @@
+{
+  "name": "qtffbox",
+  "version": "0.0.1",
+  "description": "QTFF Quicktime .MOV extensions to mp4box.js",
+  "keywords": [
+    "m4",
+    "HTML 5 media",
+    "Media Source Extension",
+    "streaming"
+  ],
+  "homepage": "https://github.com/stefwalter/qtffbox.js",
+  "main": "dist/qtff.all.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stefwalter/qtffbox.js.git"
+  },
+  "author": {
+    "nome": "Stef Walter",
+    "email": "stef@thewalter.net",
+    "url": "http://thewalter.net/stef"
+  },
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "mp4box": "^0.5.3"
+  },
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-contrib-concat": "^2.1.0",
+    "grunt-contrib-jshint": "^3.2.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "qunit": "^2.23.1"
+  },
+  "scripts": {
+    "test": "grunt test --verbose"
+  }
+}
