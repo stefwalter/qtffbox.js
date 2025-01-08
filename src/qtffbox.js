@@ -152,13 +152,15 @@ function extendQTFF(BoxParser) {
       total -= size;
     }
   });
-}
 
-/*
-function hexBuffer(buffer) {
-    return [...new Uint8Array(buffer)].map(x => "0x" + x.toString(16).padStart(2, '0')).join(', ');
+  var parseFooter = BoxParser.SampleEntry.prototype.parseFooter;
+  BoxParser.SampleEntry.prototype.parseFooter = function(stream) {
+    // TODO: The SampleEntry formats are different for QTFF, for now just ignore
+    if (stream.behavior == BEHAVIOR_QT)
+      stream.seek(this.start + this.size);
+    return parseFooter.call(this, stream);
+  }
 }
-*/
 
 if (typeof exports !== 'undefined') {
   exports.extendQTFF = extendQTFF;

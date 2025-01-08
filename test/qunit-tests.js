@@ -1,7 +1,7 @@
 QUnit.module("QTFF tests");
 
 extendQTFF(BoxParser);
-Log.setLogLevel(Log.warn);
+Log.setLogLevel(Log.debug);
 
 var BASE_URL = "./media/";
 QUnit.test("meta", function(assert) {
@@ -88,3 +88,41 @@ QUnit.test("meta", function(assert) {
     file.appendBuffer(buffer);
   });
 });
+
+QUnit.module('Media', function(hooks) {
+  hooks.after(function() {
+    if (console.originalError) {
+      console.error = console.originalError;
+      delete console.originalError;
+    }
+  });
+});
+
+[
+  "iphone.MOV",
+].map(function(name) {
+  QUnit.test(name, function(assert) {
+    var hadError = null;
+    console.originalError = console.error;
+    console.error = function(/* ... */) {
+      hadError = arguments;
+      console.originalError.apply(this, arguments);
+    };
+
+    var done = assert.async();
+    var file = MP4Box.createFile(false);
+
+    file.onReady = function() {
+      var metas = file.getBoxes("meta");
+      assert.ok(metas, "Parsed meta");
+
+      assert.strictEqual(hadError, null, "Had no errors");
+      done();
+    };
+
+    getFile(BASE_URL + name, function (buffer) {
+      file.appendBuffer(buffer);
+    });
+  });
+});
+
